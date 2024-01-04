@@ -73,4 +73,5 @@ const main = () => {
     console.error("Error during main application execution:", error);
   }
 };
+
 main();
