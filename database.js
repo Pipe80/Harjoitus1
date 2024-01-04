@@ -1,18 +1,11 @@
-module.exports = {
-    connect: async () => {
-      console.log('Yhdistetty tietokantaan.');
-    },
-    findAll: async () => {
-      console.log('Kaikki tiedot haettu.');
-    },
-    save: async (person) => {
-      console.log('Tallennettu henkilö:', person);
-    },
-    delete: async (id) => {
-      console.log('Poistettu henkilö ID:', id);
-    },
-    close: async () => {
-      console.log('Tietokantayhteys suljettu.');
-    }
-  };
-  
+const database = require("./database.js");
+
+const main = async () => {
+  await database.connect();
+  await database.findAll();
+  await database.save({ id: 1, name: "John Doe" });
+  await database.delete(1);
+  await database.close();
+};
+
+main();
