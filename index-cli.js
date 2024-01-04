@@ -1,40 +1,32 @@
 
 const readlineSync = require("readline-sync");
-/**
- * Displays all customers in the database.
- */
-const displayCustomers = () => {
-  console.log("display all customers");
+
+// Implement database.js!
+const database = require("./database.js");
+
+const displayCustomers = async () => {
+  const customers = await database.findAll();
+  console.log(customers);
 };
-/**
- * Adds a new customer to the database.
- */
-const addCustomer = () => {
-  const name = readlineSync.question("Name? ");
-  if (!name.trim()) {
-    console.log("Name cannot be empty.");
-    return;
-  }
-  let customer = { name };
-  console.log("Save customer: ", JSON.stringify(customer));
+
+const addCustomer = async () => {
+  const name = readlineSync.question("Name?");
+  console.log(name);
+  const id = await database.save(name);
+  console.log("saved with an id of " + id);
 };
-/**
- * Removes a customer from the database by ID.
- */
-const removeCustomer = () => {
+
+const removeCustomer = async () => {
   const id = readlineSync.questionInt("ID? ");
-  console.log("remove customer with id " + id);
+  await database.delete(id);
+  console.log("Deleted with an id of " + id);
 };
-/**
- * Exits the application.
- */
-const exitApp = () => {
+const exitApp = async () => {
   console.log("Exiting application.");
+  await database.close();
   process.exit();
 };
-/**
- * Displays the main menu.
- */
+
 const displayMenu = () => {
   console.log("\nCustomer App Menu:");
   console.log("1. Display Customers");
@@ -42,10 +34,11 @@ const displayMenu = () => {
   console.log("3. Remove Customer");
   console.log("4. Exit\n");
 };
+
 /**
  * The main function of the application.
  */
-const main = () => {
+const main = async () => {
   try {
     let running = true;
     while (running) {
@@ -53,13 +46,13 @@ const main = () => {
       const choice = readlineSync.question("Choose an option: ");
       switch (choice) {
         case "1":
-          displayCustomers();
+          await displayCustomers();
           break;
         case "2":
-          addCustomer();
+          await addCustomer();
           break;
         case "3":
-          removeCustomer();
+          await removeCustomer();
           break;
         case "4":
           running = false;
