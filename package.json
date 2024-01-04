@@ -1,0 +1,19 @@
+{
+  "name": "harjoitus1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pipe80/Harjoitus1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pipe80/Harjoitus1/issues"
+  },
+  "homepage": "https://github.com/Pipe80/Harjoitus1#readme"
+}
